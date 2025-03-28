@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - DIY Electronics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="DIY Electronics Logo">
+                </a>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-container">
+            <a href="cart.html" class="cart-btn active"><i class="fas fa-shopping-cart"></i></a>
+            <a href="login.html" class="btn">Login</a>
+            <a href="register.html" class="btn">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="cart-page">
+            <h1>Your Shopping Cart</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="images/phone-battery.jpg" alt="Phone Battery Replacement">
+                        </div>
+                        <div class="item-details">
+                            <h3>Replace Phone Battery Easily</h3>
+                            <p>Step-by-step guide for safe smartphone battery replacement</p>
+                        </div>
+                        <div class="item-price">
+                            <p>₹350</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn secondary"><i class="fas fa-trash"></i> Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="images/bluetooth-speaker.jpg" alt="DIY Bluetooth Speaker">
+                        </div>
+                        <div class="item-details">
+                            <h3>Mini Bluetooth Speaker (Advanced)</h3>
+                            <p>Build your own portable Bluetooth speaker with this comprehensive guide</p>
+                        </div>
+                        <div class="item-price">
+                            <p>₹400</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn secondary"><i class="fas fa-trash"></i> Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="images/led-project.jpg" alt="LED Project">
+                        </div>
+                        <div class="item-details">
+                            <h3>LED Light Control System</h3>
+                            <p>Create a custom LED lighting controller for home or projects</p>
+                        </div>
+                        <div class="item-price">
+                            <p>₹250</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn secondary"><i class="fas fa-trash"></i> Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-item">
+                        <span>Subtotal (3 items)</span>
+                        <span>₹1000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Discount</span>
+                        <span>-₹100</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>GST (18%)</span>
+                        <span>₹162</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span>₹1062</span>
+                    </div>
+                    
+                    <div class="coupon-code">
+                        <input type="text" placeholder="Enter coupon code">
+                        <button class="btn">Apply</button>
+                    </div>
+                    
+                    <a href="payment.html" class="btn checkout-btn">Proceed to Payment</a>
+                    <a href="index.html" class="continue-shopping">Continue Shopping</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="images/logo.png" alt="DIY Electronics Logo">
+        </div>
+        <div class="footer-links">
+            <a href="about.html">About Us</a> | 
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-copyright">
+            All rights reserved - <a href="privacy.html">Privacy Policy</a> - <a href="terms.html">Terms of Service</a>
+        </div>
+    </footer>
+</body>
+</html> 

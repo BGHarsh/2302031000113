@@ -1,0 +1,1098 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+:root {
+    --primary-color: #91A7B1;
+    --secondary-color: #e6e9ea;
+    --accent-color: #3a3a3a;
+    --text-color: #333;
+    --border-color: #ddd;
+    --button-hover: #88a0a9;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+ul, ol {
+    list-style-position: inside;
+    margin-bottom: 15px;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+}
+
+.btn.secondary {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn.secondary:hover {
+    background-color: #dcdee0;
+}
+
+.btn.active {
+    background-color: var(--button-hover);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--primary-color);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.logo-container {
+    flex: 1;
+}
+
+.logo img {
+    max-height: 100px;
+}
+
+.search-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.search-container input {
+    width: 70%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+.search-btn {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 10px 15px;
+    margin-left: -40px;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+}
+
+.nav-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-btn {
+    font-size: 24px;
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+.cart-btn.active {
+    color: var(--button-hover);
+}
+
+/* User menu dropdown */
+.user-menu {
+    position: relative;
+}
+
+.user-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--accent-color);
+    font-size: 16px;
+    gap: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 10;
+    display: none;
+}
+
+.user-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--secondary-color);
+}
+
+.dropdown-menu a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.dropdown-menu a i {
+    margin-right: 10px;
+}
+
+/* Main Content Styles */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Featured Projects Section */
+.featured-projects {
+    margin: 40px 0;
+}
+
+.featured-projects h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 15px;
+}
+
+.project-info h3 {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    display: block;
+}
+
+/* About Section */
+.about-section {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin: 40px 0;
+    text-align: center;
+}
+
+.about-section h2 {
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    margin-bottom: 30px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 30px 5%;
+    text-align: center;
+}
+
+.footer-logo img {
+    max-height: 100px;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+}
+
+.footer-copyright {
+    font-size: 0.9rem;
+}
+
+/* Authentication Pages */
+.auth-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.welcome-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.auth-forms {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.login-form, .register-form {
+    flex: 1;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group button {
+    width: 100%;
+}
+
+/* Project Guide Styles */
+.project-guide {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.project-guide h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.project-intro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.project-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.project-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.project-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.tools-materials {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.step {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.step:last-child {
+    border-bottom: none;
+}
+
+.step h3 {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.step h4 {
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+.safety-tips {
+    background-color: #fff3cd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.safety-tips h2 {
+    color: #856404;
+}
+
+/* About Page Styles */
+.about-page {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.about-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.join-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+/* Contact Page Styles */
+.contact-page {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.contact-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.info-item h3 {
+    margin-bottom: 10px;
+}
+
+.info-item i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.social-links {
+    margin-top: 30px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.social-icon:hover {
+    background-color: var(--button-hover);
+}
+
+/* Cart Page Styles */
+.cart-page {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.cart-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.cart-items {
+    flex: 2;
+    min-width: 500px;
+}
+
+.cart-item {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    gap: 20px;
+    align-items: center;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-details {
+    flex: 2;
+}
+
+.item-details h3 {
+    margin-bottom: 5px;
+}
+
+.item-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex: 1;
+    text-align: center;
+}
+
+.item-actions {
+    flex: 1;
+    text-align: right;
+}
+
+.cart-summary {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    align-self: flex-start;
+}
+
+.cart-summary h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item.total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.coupon-code {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.coupon-code input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.coupon-code button {
+    flex: 1;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.continue-shopping {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Profile Page Styles */
+.profile-page {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.profile-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.profile-sidebar {
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-pic {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.change-pic-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.sidebar-menu {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s;
+}
+
+.sidebar-menu a:hover {
+    background-color: #dcdee0;
+}
+
+.sidebar-menu a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.profile-content {
+    flex: 2;
+    min-width: 500px;
+}
+
+.profile-form {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.profile-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* Payment Page Styles */
+.payment-page {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.payment-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.payment-flow {
+    margin-bottom: 30px;
+}
+
+.flow-steps {
+    display: flex;
+    justify-content: center;
+}
+
+.flow-steps .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 0 50px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.flow-steps .step::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -70px;
+    width: 70px;
+    height: 2px;
+    background-color: var(--border-color);
+}
+
+.flow-steps .step:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.step.active .step-number {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.step.completed .step-number {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.payment-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.payment-methods {
+    flex: 2;
+    min-width: 500px;
+}
+
+.payment-methods h2 {
+    margin-bottom: 20px;
+}
+
+.payment-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.payment-tab {
+    padding: 15px 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    font-size: 16px;
+}
+
+.payment-tab.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.payment-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.payment-tab i {
+    margin-right: 8px;
+}
+
+.payment-tab-content {
+    display: none;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.payment-tab-content.active {
+    display: block;
+}
+
+.qr-payment {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.qr-code {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.qr-code img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.qr-instructions {
+    flex: 2;
+    min-width: 300px;
+}
+
+.qr-instructions h3 {
+    margin-bottom: 15px;
+}
+
+.qr-instructions ol {
+    margin-bottom: 20px;
+}
+
+.upi-id {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.note {
+    color: #666;
+    font-style: italic;
+}
+
+.timer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.countdown {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.card-payment-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.bank-options, .wallet-options {
+    padding: 20px;
+}
+
+.popular-banks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.bank-option, .wallet-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.other-banks select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.wallet-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.order-summary {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    align-self: flex-start;
+}
+
+.order-summary h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.summary-items {
+    margin-bottom: 20px;
+}
+
+.summary-total {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+}
+
+.grand-total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.pay-btn {
+    width: 100%;
+    margin: 20px 0 10px;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-container, .nav-container {
+        width: 100%;
+    }
+    
+    .search-container input {
+        width: 100%;
+    }
+    
+    .auth-forms {
+        flex-direction: column;
+    }
+    
+    .project-intro, .cart-container, .profile-container, .payment-container {
+        flex-direction: column;
+    }
+    
+    .flow-steps .step {
+        margin: 0 20px;
+    }
+    
+    .flow-steps .step::after {
+        right: -40px;
+        width: 40px;
+    }
+    
+    .popular-banks, .wallet-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .cart-item {
+        flex-wrap: wrap;
+    }
+    
+    .item-details, .item-price, .item-actions {
+        flex: 1 0 100%;
+        text-align: left;
+        margin-top: 10px;
+    }
+    
+    .payment-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .payment-tab {
+        flex: 1 0 50%;
+        text-align: center;
+    }
+} 

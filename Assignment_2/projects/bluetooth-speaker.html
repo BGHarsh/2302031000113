@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Bluetooth Speaker - DIY Electronics</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="DIY Electronics Logo">
+                </a>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-container">
+            <a href="../cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i></a>
+            <a href="../login.html" class="btn">Login</a>
+            <a href="../register.html" class="btn">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="project-guide">
+            <h1>Mini Bluetooth Speaker</h1>
+            
+            <div class="project-intro">
+                <div class="project-image">
+                    <img src="../images/bluetooth-speaker.jpg" alt="DIY Bluetooth Speaker">
+                </div>
+                <div class="project-info">
+                    <p class="price">₹400</p>
+                    <div class="action-buttons">
+                        <button class="btn">Add to Cart</button>
+                        <button class="btn secondary">Save For Later</button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="tools-materials">
+                <h2>Tools & Materials Required:</h2>
+                <ul>
+                    <li>Bluetooth Audio Module (e.g., CSR8635 or BC127)</li>
+                    <li>Speaker Drivers (typically 3W to 5W)</li>
+                    <li>Battery (Lithium-Ion rechargeable, 3.7V)</li>
+                    <li>Charging Module (e.g., TP4056 for charging the battery)</li>
+                    <li>Amplifier Module (e.g., TDA2822 or LM386)</li>
+                    <li>Power Switch</li>
+                    <li>Enclosure (can be a small box, plastic, or wood)</li>
+                    <li>Wires for connection</li>
+                    <li>Soldering Iron and Solder</li>
+                    <li>Hot Glue Gun or Double-Sided Tape</li>
+                    <li>Micro-USB Cable (for charging)</li>
+                    <li>Perfboard (optional, if you want to include a wired option)</li>
+                    <li>Resistors and Capacitors (if needed, depending on your circuit)</li>
+                    <li>Plastic or Wood for Enclosure (can use a project box, old speaker box, or custom-designed case)</li>
+                    <li>Drill (for making holes for the speaker, buttons, etc.)</li>
+                </ul>
+            </section>
+
+            <section class="steps">
+                <div class="step">
+                    <h3>Step 1: Prepare the Speaker Enclosure</h3>
+                    <ul>
+                        <li>Choose your enclosure: You can use a small plastic or wooden box as the speaker's case. The size of the box should be big enough to fit the speaker, battery, and other components.</li>
+                        <li>Drill holes: Drill a hole for the speaker driver (front) and for the buttons/charging port (back or side).</li>
+                        <li>Mark spaces: Mark appropriate spaces for the Bluetooth module, battery, amplifier, and charging circuit inside the enclosure.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h3>Step 2: Wiring the Components</h3>
+                    <h4>A. Connect the Bluetooth Module:</h4>
+                    <ul>
+                        <li>Power Supply Connection: Connect the 5V output of the battery charging module to the VCC input on the Bluetooth module.</li>
+                        <li>Ground Connection: Connect the GND on the Bluetooth module to the battery charging module's GND.</li>
+                        <li>Audio Output: The Bluetooth module will output audio signals, usually through left (L) and right (R) channels, which need to be connected to the amplifier module.</li>
+                    </ul>
+
+                    <h4>B. Connect the Amplifier Module:</h4>
+                    <ul>
+                        <li>Input from Bluetooth Module: Connect the L and R audio output from the Bluetooth module to the input pins of the amplifier module.</li>
+                        <li>Speaker Output: Connect the output pins from the amplifier module to the speaker driver.</li>
+                        <li>Power Supply for Amplifier: Connect the 5V and GND from the battery module to the amplifier module to power it.</li>
+                    </ul>
+
+                    <h4>C. Battery & Charging Module:</h4>
+                    <ul>
+                        <li>Connect the charging module to the battery: Connect the output pins from the charging module to the positive and negative terminals of the battery.</li>
+                        <li>Make sure the input pins of the charging module are connected to the Micro-USB port for charging.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h3>Step 3: Set Up the Control Buttons</h3>
+                    <ul>
+                        <li>Power Switch: Install a simple ON/OFF switch to control power to the Bluetooth module and the amplifier. You can place this on the side of the enclosure.</li>
+                        <li>Volume Control: For volume control, you could add a rotary potentiometer or simple push buttons connected to the amplifier's gain circuit.</li>
+                        <li>Bluetooth Pairing Button: If needed, you can add a button for Bluetooth pairing, though many Bluetooth modules pair automatically when powered on.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h3>Step 4: Secure the Components Inside the Enclosure</h3>
+                    <ul>
+                        <li>Position the Speaker Driver: Secure the speaker driver to the front hole you drilled. Use hot glue or double-sided tape for a secure attachment.</li>
+                        <li>Mount the Bluetooth Module: Place the Bluetooth module, amplifier, and charging circuit inside the enclosure and secure them using glue or mounting tape.</li>
+                        <li>Wire Management: Organize the wires neatly to prevent them from interfering with the moving parts or causing shorts. Use zip ties or clips to keep wires in place.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h3>Step 5: Testing and Final Assembly</h3>
+                    <ol>
+                        <li>Check Connections: Double-check that all connections are correct. Make sure power is properly supplied to each module and that the audio output of the Bluetooth module is correctly wired to the amplifier.</li>
+                        <li>Test Assembly: Power on the device, and pair it with your phone or Bluetooth-enabled device. Play some music to test the audio output.</li>
+                        <li>Adjustment: Adjust the volume and check for any distortion or issues with audio quality.</li>
+                        <li>Test Charging: Plug in the charging cable and test the charging function to make sure everything works as expected.</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <h3>Step 6: Secure the Enclosure and Finish the Project</h3>
+                    <ul>
+                        <li>Close the Enclosure: Once everything is working fine, close the enclosure and secure the top part with screws or glue.</li>
+                        <li>Test Charging: Plug in the charging cable and test the charging function to make sure everything works as expected.</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h3>Step 7: Enjoy Your Mini Bluetooth Speaker!</h3>
+                    <p>Now you have your own portable Bluetooth speaker! You can customize it further with added features like:</p>
+                    <ul>
+                        <li>LED Lights for visual effects</li>
+                        <li>Extra Bass by adjusting the amplifier settings</li>
+                        <li>Waterproofing for outdoor use</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="safety-tips">
+                <h2>Caution:</h2>
+                <p>Handle all electronic components carefully to avoid short circuits or static damage. Make sure all connections are secure before powering on, and use proper insulation to prevent any accidental contact with wires. Always test the speaker in a safe environment before final assembly to ensure functionality.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="../images/logo.png" alt="DIY Electronics Logo">
+        </div>
+        <div class="footer-links">
+            <a href="../about.html">About Us</a> | 
+            <a href="../contact.html">Contact Us</a>
+        </div>
+        <div class="footer-copyright">
+            All rights reserved - <a href="../privacy.html">Privacy Policy</a> - <a href="../terms.html">Terms of Service</a>
+        </div>
+    </footer>
+</body>
+</html> 
