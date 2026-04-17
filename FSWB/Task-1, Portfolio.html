@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alex Mercer — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0d0d0d;
+      --paper: #f5f0e8;
+      --accent: #e8440a;
+      --muted: #9a9080;
+      --highlight: #f7c948;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, nav a, .syne { font-family: 'Syne', sans-serif; }
+
+    /* Cursor */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transition: transform 0.15s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transition: all 0.25s ease;
+      mix-blend-mode: multiply;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(13,13,13,0.08);
+      z-index: 100;
+    }
+
+    /* Hero */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: 64px;
+    }
+    @media(max-width:768px){ .hero-grid { grid-template-columns: 1fr; } }
+
+    .hero-left {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem 4rem 5vw;
+      border-right: 1px solid rgba(13,13,13,0.1);
+    }
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: var(--ink);
+    }
+    .hero-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.7;
+      filter: sepia(20%);
+    }
+    .hero-tag {
+      position: absolute; bottom: 2rem; left: 2rem;
+      background: var(--accent); color: white;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.5rem 1rem;
+    }
+    .name-block {
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 800; line-height: 0.9;
+      letter-spacing: -0.03em;
+    }
+    .name-block em {
+      font-style: normal; color: var(--accent);
+    }
+    .role-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1.5px solid var(--ink);
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: 1.5rem; width: fit-content;
+    }
+    .role-badge::before {
+      content: ''; width: 8px; height: 8px;
+      background: var(--accent); border-radius: 50%;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* Marquee */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(13,13,13,0.12);
+      border-bottom: 1px solid rgba(13,13,13,0.12);
+      background: var(--ink);
+      padding: 0.8rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 2rem;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track span {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--paper);
+    }
+    .marquee-track .dot { color: var(--accent); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* Section */
+    .section { padding: 6rem 5vw; }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800; line-height: 1; letter-spacing: -0.03em;
+    }
+
+    /* About grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem; margin-top: 4rem;
+      align-items: start;
+    }
+    @media(max-width:768px){ .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .stat-block {
+      border-top: 2px solid var(--ink);
+      padding-top: 1rem; margin-bottom: 1.5rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem; font-weight: 800;
+      line-height: 1; color: var(--accent);
+    }
+    .stat-label {
+      font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;
+    }
+
+    /* Skills */
+    .skills-section { background: var(--ink); color: var(--paper); }
+    .skill-row {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(245,240,232,0.1);
+      padding: 1.5rem 0; cursor: default;
+      transition: padding 0.3s ease;
+    }
+    .skill-row:hover { padding-left: 1rem; }
+    .skill-row:hover .skill-bar-fill { background: var(--highlight); }
+    .skill-name {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .skill-bar { width: 200px; height: 3px; background: rgba(255,255,255,0.1); }
+    .skill-bar-fill { height: 100%; background: var(--accent); transition: background 0.3s; }
+    .skill-pct { font-size: 0.85rem; color: var(--muted); min-width: 3rem; text-align: right; }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: rgba(13,13,13,0.1);
+      margin-top: 3rem;
+      border: 1.5px solid rgba(13,13,13,0.1);
+    }
+    .project-card {
+      background: var(--paper);
+      padding: 2.5rem;
+      transition: background 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .project-card:hover { background: var(--ink); color: var(--paper); }
+    .project-card:hover .project-tag { color: var(--highlight); border-color: var(--highlight); }
+    .project-card:hover .project-arrow { transform: translate(4px,-4px); color: var(--accent); }
+    .project-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.15em; color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; font-weight: 800;
+      line-height: 1.1; margin-bottom: 1rem;
+    }
+    .project-desc { font-size: 0.9rem; line-height: 1.6; color: inherit; opacity: 0.75; }
+    .project-tag {
+      display: inline-block;
+      border: 1px solid rgba(13,13,13,0.2);
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.75rem; margin-top: 1.5rem; margin-right: 0.5rem;
+      transition: all 0.3s;
+    }
+    .project-arrow {
+      position: absolute; top: 2.5rem; right: 2.5rem;
+      font-size: 1.5rem; transition: transform 0.3s;
+    }
+
+    /* Contact */
+    .contact-section {
+      background: var(--accent);
+      color: white;
+    }
+    .contact-big {
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 800; line-height: 0.85;
+      letter-spacing: -0.04em;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 1rem;
+      border: 2px solid white;
+      padding: 1rem 2.5rem;
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.9rem; letter-spacing: 0.1em;
+      text-decoration: none; color: white;
+      transition: all 0.3s; margin-top: 3rem;
+    }
+    .contact-link:hover { background: white; color: var(--accent); }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+
+    /* Footer */
+    footer {
+      background: var(--ink); color: rgba(245,240,232,0.4);
+      padding: 2rem 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; letter-spacing: 0.05em;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="flex justify-between items-center px-[5vw] h-16">
+    <a href="#" class="syne font-bold text-sm tracking-widest uppercase">AM.</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="text-sm font-medium hover:text-[#e8440a] transition-colors">About</a>
+      <a href="#skills" class="text-sm font-medium hover:text-[#e8440a] transition-colors">Skills</a>
+      <a href="#work" class="text-sm font-medium hover:text-[#e8440a] transition-colors">Work</a>
+      <a href="#contact" class="text-sm font-medium hover:text-[#e8440a] transition-colors">Contact</a>
+    </div>
+    <a href="#contact" class="syne text-xs font-bold tracking-widest uppercase border border-[#0d0d0d] px-4 py-2 hover:bg-[#0d0d0d] hover:text-[#f5f0e8] transition-all">
+      Hire Me
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-grid">
+  <div class="hero-left">
+    <div class="section-label fade-up">Full-Stack Developer</div>
+    <h1 class="name-block fade-up mt-2">
+      Harsh<br/><em>Ukani</em>
+    </h1>
+    <div class="role-badge fade-up">Available for work</div>
+    <p class="mt-6 text-base leading-relaxed max-w-md opacity-70 fade-up" style="font-weight:300">
+      I craft elegant digital experiences — from sleek frontends to scalable backends. Based in Gujarat, building for the world.
+    </p>
+    <div class="flex gap-4 mt-8 fade-up">
+      <a href="#work" class="syne text-xs font-bold tracking-widest uppercase bg-[#e8440a] text-white px-6 py-3 hover:bg-[#0d0d0d] transition-colors">View Work</a>
+      <a href="#contact" class="syne text-xs font-bold tracking-widest uppercase border border-[#0d0d0d] px-6 py-3 hover:bg-[#0d0d0d] hover:text-[#f5f0e8] transition-all">Contact</a>
+    </div>
+  </div>
+  <div class="hero-right hidden md:flex">
+    <!-- SVG Portrait Placeholder -->
+    <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#1a1a1a"/>
+          <stop offset="100%" style="stop-color:#0d0d0d"/>
+        </linearGradient>
+      </defs>
+      <rect width="600" height="700" fill="url(#bg)"/>
+      <!-- Abstract person silhouette -->
+      <circle cx="300" cy="200" r="90" fill="#e8440a" opacity="0.15"/>
+      <circle cx="300" cy="190" r="70" fill="#f5f0e8" opacity="0.08"/>
+      <ellipse cx="300" cy="450" rx="160" ry="200" fill="#f5f0e8" opacity="0.06"/>
+      <!-- Grid lines -->
+      <line x1="0" y1="350" x2="600" y2="350" stroke="#f5f0e8" stroke-width="0.5" opacity="0.1"/>
+      <line x1="300" y1="0" x2="300" y2="700" stroke="#f5f0e8" stroke-width="0.5" opacity="0.1"/>
+      <circle cx="300" cy="190" r="72" fill="none" stroke="#e8440a" stroke-width="1" opacity="0.4"/>
+      <!-- Decorative text -->
+      <text x="60" y="600" font-family="Syne,sans-serif" font-size="9" fill="#f5f0e8" opacity="0.2" font-weight="700" letter-spacing="4">DEVELOPER · DESIGNER · CREATOR</text>
+    </svg>
+    <div class="hero-tag">Open to Projects</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>React</span><span class="dot">✦</span>
+    <span>Node.js</span><span class="dot">✦</span>
+    <span>UI Design</span><span class="dot">✦</span>
+    <span>Tailwind CSS</span><span class="dot">✦</span>
+    <span>MongoDB</span><span class="dot">✦</span>
+    <span>TypeScript</span><span class="dot">✦</span>
+    <span>Next.js</span><span class="dot">✦</span>
+    <span>Python</span><span class="dot">✦</span>
+    <span>AWS</span><span class="dot">✦</span>
+    <!-- repeat -->
+    <span>React</span><span class="dot">✦</span>
+    <span>Node.js</span><span class="dot">✦</span>
+    <span>UI Design</span><span class="dot">✦</span>
+    <span>Tailwind CSS</span><span class="dot">✦</span>
+    <span>MongoDB</span><span class="dot">✦</span>
+    <span>TypeScript</span><span class="dot">✦</span>
+    <span>Next.js</span><span class="dot">✦</span>
+    <span>Python</span><span class="dot">✦</span>
+    <span>AWS</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-label fade-up">01 — About</div>
+  <h2 class="section-title fade-up">Who I Am</h2>
+  <div class="about-grid">
+    <div>
+      <p class="text-lg leading-relaxed opacity-75 mb-6 fade-up" style="font-weight:300">
+        I'm a full-stack developer and UI/UX enthusiast with a passion for building products that are both beautiful and highly functional. I believe the best interfaces are invisible — they just work.
+      </p>
+      <p class="text-base leading-relaxed opacity-60 fade-up" style="font-weight:300">
+        With 3+ years of hands-on experience, I've worked across startups and agencies, delivering everything from pixel-perfect landing pages to complex SaaS platforms. Currently pursuing my B.Tech while freelancing and contributing to open source.
+      </p>
+      <div class="mt-8 flex gap-4 flex-wrap fade-up">
+        <a href="#" class="syne text-xs font-bold tracking-widest uppercase border border-[#0d0d0d] px-5 py-2.5 hover:bg-[#0d0d0d] hover:text-[#f5f0e8] transition-all">Download CV</a>
+        <a href="https://github.com" target="_blank" class="syne text-xs font-bold tracking-widest uppercase text-[#e8440a] flex items-center gap-2 hover:underline">
+          GitHub ↗
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="stat-block fade-up">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-block fade-up">
+        <div class="stat-num">24</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-block fade-up">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section section">
+  <div class="section-label fade-up" style="color:#9a9080">02 — Skills</div>
+  <h2 class="section-title fade-up">What I Do</h2>
+  <div class="mt-8 max-w-3xl">
+    <div class="skill-row fade-up">
+      <span class="skill-name">React / Next.js</span>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+      <span class="skill-pct">90%</span>
+    </div>
+    <div class="skill-row fade-up">
+      <span class="skill-name">Node.js / Express</span>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+      <span class="skill-pct">85%</span>
+    </div>
+    <div class="skill-row fade-up">
+      <span class="skill-name">Tailwind CSS / UI</span>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+      <span class="skill-pct">95%</span>
+    </div>
+    <div class="skill-row fade-up">
+      <span class="skill-name">TypeScript</span>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div>
+      <span class="skill-pct">78%</span>
+    </div>
+    <div class="skill-row fade-up">
+      <span class="skill-name">Python / Django</span>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      <span class="skill-pct">70%</span>
+    </div>
+    <div class="skill-row fade-up">
+      <span class="skill-name">MongoDB / PostgreSQL</span>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+      <span class="skill-pct">80%</span>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PROJECTS -->
+<section id="work" class="section">
+  <div class="section-label fade-up">03 — Work</div>
+  <h2 class="section-title fade-up">Selected Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card fade-up">
+      <div class="project-num">01</div>
+      <span class="project-arrow">↗</span>
+      <h3 class="project-title">EduConnect Platform</h3>
+      <p class="project-desc">A full-featured LMS for colleges with live classes, quizzes, and real-time analytics. Served 500+ students.</p>
+      <span class="project-tag">React</span>
+      <span class="project-tag">Node</span>
+      <span class="project-tag">MongoDB</span>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">02</div>
+      <span class="project-arrow">↗</span>
+      <h3 class="project-title">ShopLocal App</h3>
+      <p class="project-desc">Hyper-local e-commerce PWA connecting Surat's street vendors with customers. Featured on local news.</p>
+      <span class="project-tag">Next.js</span>
+      <span class="project-tag">Tailwind</span>
+      <span class="project-tag">Stripe</span>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">03</div>
+      <span class="project-arrow">↗</span>
+      <h3 class="project-title">HealthTrack Dashboard</h3>
+      <p class="project-desc">IoT-powered wellness tracker with AI insights, wearable sync, and beautiful data visualizations.</p>
+      <span class="project-tag">React</span>
+      <span class="project-tag">Python</span>
+      <span class="project-tag">AWS</span>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">04</div>
+      <span class="project-arrow">↗</span>
+      <h3 class="project-title">CryptoVault</h3>
+      <p class="project-desc">Real-time crypto portfolio tracker with price alerts, charting, and one-tap buy/sell integration.</p>
+      <span class="project-tag">TypeScript</span>
+      <span class="project-tag">WebSockets</span>
+      <span class="project-tag">Redis</span>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">05</div>
+      <span class="project-arrow">↗</span>
+      <h3 class="project-title">OpenBlog CMS</h3>
+      <p class="project-desc">Headless CMS and blogging engine with markdown support, SEO tools, and a drag-and-drop editor.</p>
+      <span class="project-tag">Next.js</span>
+      <span class="project-tag">PostgreSQL</span>
+      <span class="project-tag">Vercel</span>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">06</div>
+      <span class="project-arrow">↗</span>
+      <h3 class="project-title">DevCollab</h3>
+      <p class="project-desc">Open source developer networking platform — think LinkedIn, but for side projects and hackathons.</p>
+      <span class="project-tag">React</span>
+      <span class="project-tag">GraphQL</span>
+      <span class="project-tag">Docker</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section section">
+  <div class="section-label fade-up" style="color:rgba(255,255,255,0.5)">04 — Contact</div>
+  <h2 class="contact-big fade-up">Let's<br/>Work<br/>Together.</h2>
+  <p class="mt-6 text-white/70 max-w-sm text-base leading-relaxed fade-up" style="font-weight:300">
+    Have a project in mind? I'm always open to discussing new ideas and opportunities.
+  </p>
+  <a href="mailto:alex@example.com" class="contact-link fade-up">
+    harshukani7@gmail.com <span>→</span>
+  </a>
+  <div class="flex gap-6 mt-8 fade-up">
+    <a href="https://github.com" target="_blank" class="syne text-xs font-bold tracking-widest uppercase text-white/60 hover:text-white transition-colors">GitHub</a>
+    <a href="https://linkedin.com" target="_blank" class="syne text-xs font-bold tracking-widest uppercase text-white/60 hover:text-white transition-colors">LinkedIn</a>
+    <a href="https://twitter.com" target="_blank" class="syne text-xs font-bold tracking-widest uppercase text-white/60 hover:text-white transition-colors">Twitter</a>
+  </div>
+</section>
+
+<footer>
+  <span class="syne font-bold text-[#f5f0e8]/30">Alex Mercer</span>
+  <span>Designed with intention · Built with code</span>
+  <span>© 2025</span>
+</footer>
+
+<script>
+  // Custom Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX - 6 + 'px';
+    cursor.style.top = e.clientY - 6 + 'px';
+    ring.style.left = e.clientX - 18 + 'px';
+    ring.style.top = e.clientY - 18 + 'px';
+  });
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2)';
+      ring.style.transform = 'scale(1.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.transform = 'scale(1)';
+    });
+  });
+
+  // Intersection Observer for fade-up
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
